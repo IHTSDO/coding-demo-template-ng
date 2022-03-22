@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<h3>ECL</h3>
+<div fxLayout="row" fxLayoutAlign=" start" >
+    <pre>
+        <code [innerHTML]="data.ecl"></code>
+    </pre>
+    <button mat-icon-button color="primary" [cdkCopyToClipboard]="data.ecl"><mat-icon>content_copy</mat-icon></button>
+    <!-- <button mat-icon-button color="primary"><mat-icon>open_in_new</mat-icon></button> -->
+</div>
+<h3>Results ({{total}}<span *ngIf="loading">-</span>)</h3>
+<div mat-dialog-content>
+    <mat-spinner [diameter]="20" *ngIf="loading"></mat-spinner>
+    <mat-list dense *ngIf="!loading">
+        <mat-list-item *ngFor="let item of expansion">
+            {{ item.display }}
+        </mat-list-item>
+    </mat-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Close</button>
+</div>

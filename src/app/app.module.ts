@@ -19,13 +19,19 @@ import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { BindingDetailsComponent } from './binding-details/binding-details.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatListModule } from '@angular/material/list';
+import { ClipboardModule } from '@angular/cdk/clipboard';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     CodingTabsComponent,
     BindingComponent,
-    AutocompleteBindingComponent
+    AutocompleteBindingComponent,
+    BindingDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -43,7 +49,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     FormsModule,
     ReactiveFormsModule,
     MatInputModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    MatListModule,
+    ClipboardModule,
+    FlexLayoutModule
   ],
   providers: [],
   bootstrap: [AppComponent]

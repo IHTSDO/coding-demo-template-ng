@@ -14,6 +14,13 @@ export const codingSpec = [
                 note: 'Medicinal products, contain at least provided ingredientes (open world assuption), no information on form.'
             },
             {
+                title: 'Gender',
+                type: 'dropdown',
+                ecl: `< 365873007 |Gender finding (finding)|`,
+                value: '',
+                note: 'Patient gender.'
+            },
+            {
                 title: 'Medicinal product form + groupers',
                 type: 'autocomplete',
                 ecl: `<< 763158003 |Medicinal product| :

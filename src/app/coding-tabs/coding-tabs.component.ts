@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CodingSpecService } from '../coding-spec.service';
+import { CodingSpecService } from '../services/coding-spec.service';
 
 @Component({
   selector: 'app-coding-tabs',

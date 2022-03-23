@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { TerminologyService } from '../terminology.service';
+import { TerminologyService } from '../services/terminology.service';
 import { FormControl } from '@angular/forms';
 import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
 import {Observable, of, Subject} from 'rxjs';

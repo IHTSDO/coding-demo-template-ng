@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { codingSpec } from './coding-spec';
+import { codingSpec } from '../coding-spec';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
-import { TerminologyService } from '../terminology.service';
+import { TerminologyService } from '../services/terminology.service';
 
 @Component({
   selector: 'app-binding-details',

@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { TerminologyService } from '../services/terminology.service';
 
 @Component({
@@ -25,11 +25,17 @@ export class BindingDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.terminologyService.expandValueSet(this.data.ecl, '').subscribe(response => { 
-      this.expansion = response.expansion.contains;
-      this.total = response.expansion.total;
+    this.terminologyService.expandValueSet(this.data.ecl, '').subscribe(response => {
+      if (!response.issue) {
+        this.expansion = response.expansion?.contains;
+        this.total = response.expansion?.total;
+      } else {
+        this.expansion = [];
+        this.total = '-';
+        console.log(response.issue.diagnostics)
+      }
       this.loading = false;
-    } )
+    } );
   }
 
 }

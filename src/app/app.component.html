@@ -2,12 +2,24 @@
   <img src="https://www.snomed.org/SNOMED/media/SNOMED/other/brand-mark.png" height="60px">
   <span id="title">Coding demo template</span>
   <span class="example-spacer"></span>
+  
+  <button mat-raised-button color="accent" [matMenuTriggerFor]="editionsMenu">{{selectedEdition}}</button>
+  <mat-menu #editionsMenu="matMenu">
+    <button mat-menu-item *ngFor="let edition of editions" (click)="setEdition(edition)">
+      {{edition.resource.title}}
+    </button>
+  </mat-menu>
+  
+  <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">{{selectedLanguage}}</button>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item *ngFor="let language of languages" (click)="setLanguage(language)">{{language}}</button>
+  </mat-menu>
+
   <button mat-raised-button color="accent" (click)="this.excelService.exportAsExcelFile(this.bindingsForExport, 'bindings')">
     <mat-icon>cloud_download</mat-icon>&nbsp;&nbsp;Export Bindings
   </button>
+
   <a href="https://github.com/alopezo/coding-demo-template-ng" target="_blank" mat-raised-button color="accent"><mat-icon>info</mat-icon></a>
-  <!-- <button mat-raised-button color="accent">
-    <mat-icon>info</mat-icon>
-  </button> -->
+
 </mat-toolbar>
 <app-coding-tabs></app-coding-tabs>

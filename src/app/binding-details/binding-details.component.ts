@@ -12,6 +12,8 @@ export class BindingDetailsComponent implements OnInit {
   expansion: any[] | undefined;
   total: any;
   loading = false;
+  expandUrl = '';
+  expansionLength = 0;
 
   constructor(
     public dialogRef: MatDialogRef<BindingDetailsComponent>,
@@ -24,14 +26,32 @@ export class BindingDetailsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.loadExpansion(true);
+  }
+
+  loadPage() {
+    this.loadExpansion(false);
+  }
+
+  loadExpansion(clear: boolean) {
+    let offset = this.expansion?.length;
+    if (clear) {
+      this.expansion = [];
+      this.total = '-';
+      this.expansionLength = 0;
+      offset = 0;
+    }
     this.loading = true;
-    this.terminologyService.expandValueSet(this.data.ecl, '').subscribe(response => {
+    this.expandUrl = this.terminologyService.getValueSetExpansionUrl(this.data.ecl, '');
+    this.terminologyService.expandValueSet(this.data.ecl, '', offset, 20).subscribe(response => {
       if (!response.issue) {
-        this.expansion = response.expansion?.contains;
+        this.expansion = this.expansion?.concat(response.expansion?.contains);
         this.total = response.expansion?.total;
+        this.expansionLength = (this.expansion) ? this.expansion.length : 0
       } else {
         this.expansion = [];
         this.total = '-';
+        this.expansionLength = 0;
         console.log(response.issue.diagnostics)
       }
       this.loading = false;

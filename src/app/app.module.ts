@@ -26,6 +26,8 @@ import { ClipboardModule } from '@angular/cdk/clipboard';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { DropdownBindingComponent } from './dropdown-binding/dropdown-binding.component';
 import { MatMenuModule } from '@angular/material/menu';
+import { MatTooltipModule } from '@angular/material/tooltip';
+
 
 @NgModule({
   declarations: [
@@ -57,7 +59,8 @@ import { MatMenuModule } from '@angular/material/menu';
     MatListModule,
     ClipboardModule,
     FlexLayoutModule,
-    MatMenuModule
+    MatMenuModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent]

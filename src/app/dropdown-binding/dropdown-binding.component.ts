@@ -20,7 +20,7 @@ export class DropdownBindingComponent implements OnInit {
 
   openDialog(): void {
     const dialogRef = this.dialog.open(BindingDetailsComponent, {
-      height: '90%',
+      height: '85%',
       width: '70%',
       data: this.binding
     });

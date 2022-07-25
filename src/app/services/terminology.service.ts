@@ -14,6 +14,10 @@ export class TerminologyService {
 
   constructor(private http: HttpClient) { }
 
+  setSnowstormFhirBase(url: string) {
+    this.snowstormFhirBase = url;
+  }
+  
   setFhirUrlParam(url: string) {
     this.fhirUrlParam = url;
   }

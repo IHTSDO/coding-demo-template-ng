@@ -15,5 +15,6 @@ a {
 }
 
 ::ng-deep.mat-menu-panel {
-    max-width: none !important;
-  }
+    max-width:fit-content !important;
+    overflow-x: hidden !important;
+}

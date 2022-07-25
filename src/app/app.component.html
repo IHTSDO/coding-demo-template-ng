@@ -3,11 +3,19 @@
   <span id="title">Coding demo template</span>
   <span class="example-spacer"></span>
   
+  <button mat-raised-button color="accent" [matMenuTriggerFor]="serverMenu">FHIR Server: {{selectedServer.name}}</button>
+  <mat-menu #serverMenu="matMenu">
+    <button mat-menu-item *ngFor="let server of fhirServers" (click)="setFhirServer(server)">{{server.name}}</button>
+  </mat-menu>
+
   <button mat-raised-button color="accent" [matMenuTriggerFor]="editionsMenu">{{selectedEdition}}</button>
-  <mat-menu #editionsMenu="matMenu">
-    <button mat-menu-item *ngFor="let edition of editions" (click)="setEdition(edition)">
-      {{edition.resource.title}}
-    </button>
+  <mat-menu #editionsMenu="matMenu" class="wide-menu">
+    <ng-container *ngFor="let mainItem of editionsDetails">
+      <button mat-menu-item [matMenuTriggerFor]="sub_menu">{{ mainItem.editionName }}</button>
+      <mat-menu #sub_menu="matMenu">
+         <button *ngFor="let subItem of mainItem.editions" mat-menu-item (click)="setEdition(subItem)">{{ subItem.resource.title }}</button>
+      </mat-menu>
+    </ng-container>
   </mat-menu>
   
   <button mat-raised-button color="accent" [matMenuTriggerFor]="menu">{{selectedLanguage}}</button>

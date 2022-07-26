@@ -24,6 +24,7 @@ export class AppComponent {
   constructor( private codingSpecService: CodingSpecService, public excelService: ExcelService, private terminologyService: TerminologyService ) { }
 
   ngOnInit(): void {
+    this.setFhirServer(this.selectedServer);
     this.bindingsForExport = [];
     let spec: any[] = this.codingSpecService.getCodingSpec();
     for (const section of spec) {

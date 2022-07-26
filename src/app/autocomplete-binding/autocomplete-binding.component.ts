@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TerminologyService } from '../services/terminology.service';
 import { FormControl } from '@angular/forms';
-import {debounceTime, distinctUntilChanged, map, startWith, switchMap} from 'rxjs/operators';
+import {debounceTime, distinctUntilChanged, map, startWith, switchMap,tap} from 'rxjs/operators';
 import {Observable, of, Subject} from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { BindingDetailsComponent } from '../binding-details/binding-details.component';
@@ -15,6 +15,7 @@ export class AutocompleteBindingComponent implements OnInit {
   formControl = new FormControl();
   autoFilter: Observable<any> | undefined;
   @Input() binding: any;
+  loading = false;
 
   constructor(private terminologyService: TerminologyService, public dialog: MatDialog) { }
 
@@ -23,15 +24,19 @@ export class AutocompleteBindingComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((term: string) =>  {
+        this.loading = true;
         let response = this.terminologyService.expandValueSet(this.binding.ecl, term)
         return response;
+      }),
+      tap(data => {
+        this.loading = false;
       })
     );  
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(BindingDetailsComponent, {
-      height: '85%',
+      height: '90%',
       width: '70%',
       data: this.binding
     });

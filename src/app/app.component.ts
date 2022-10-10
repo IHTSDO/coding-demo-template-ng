@@ -17,7 +17,7 @@ export class AppComponent {
   selectedEdition = 'Edition';
   selectedLanguage = 'en';
   fhirServers = [
-    { name: "SNOMED Public Browser", url: "https://snowstorm.ihtsdotools.org/snowstorm/snomed-ct/fhir"},
+    { name: "SNOMED Public", url: "https://snowstorm.ihtsdotools.org/snowstorm/snomed-ct/fhir"},
   ];
   selectedServer = this.fhirServers[0];
 
@@ -80,7 +80,7 @@ export class AppComponent {
   }
 
   setEdition(edition: any) {
-    this.selectedEdition = edition.resource.title;
+    this.selectedEdition = edition.resource.title?.replace('SNOMED CT release ','');
     this.terminologyService.setFhirUrlParam(edition.resource.version);
   }
 

@@ -18,3 +18,7 @@ a {
     max-width:fit-content !important;
     overflow-x: hidden !important;
 }
+
+button {
+    overflow-x: hidden !important;
+}
